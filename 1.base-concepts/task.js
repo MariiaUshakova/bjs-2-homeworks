@@ -1,13 +1,24 @@
+"use strict"
+
 function solveEquation(a, b, c) {
   let arr;
-  // код для задачи №1 писать здесь
-  return arr; // array
+  let root1;
+  let root2;
+  let d = b ** 2 - 4 * a * c;
+  if (d < 0) {
+    arr = [];
+  } else if (d === 0) {
+    root1 = -b / (2 * a);
+    arr = [root1];
+  } else if (d > 0) {
+    root1 = (-b + Math.sqrt(d)) / (2 * a);
+    root2 = (-b - Math.sqrt(d)) / (2 * a);
+    arr = [root1, root2]
+  }
+
+  return arr;
 }
 
-function calculateTotalMortgage(percent, contribution, amount, date) {
-  let totalAmount;
-
-  // код для задачи №2 писать здесь
-
-  return totalAmount;
-}
+/* Если дискриминант меньше нуля, то корней нет (пустой массив).
+Если дискриминант равен нулю, то корень один. Его необходимо вычислить и вернуть из функции (массив с одним корнем). Формула для вычисления корня: -b/(2*a)
+Если дискриминант больше нуля, то существует 2 решения уравнения. Их необходимо вычислить и вернуть из функции (массив с двумя корнями): (-b + Math.sqrt(d) )/(2*a) и (-b - Math.sqrt(d) )/(2*a)   */
