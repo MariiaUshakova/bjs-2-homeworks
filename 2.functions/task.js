@@ -1,7 +1,7 @@
 // Задание 1
 function getArrayParams(arr) {
-  let max = -100;
-  let min = 100;
+  let max = -Infinity;
+  let min = Infinity;
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] > max) {
@@ -31,23 +31,8 @@ function worker(arr) {
   }
   return sum;
 }
-function makeWork(arrOfArr, func) {
-  let max = -Infinity;
-  for (let i = 0; i < arrOfArr.length; i++) {
-    let sum = func(arrOfArr[i]);
-    if (sum > max) {
-      max = sum;
-    }
-  }
-  return max;
-}
-let result2 = makeWork([[1, 2, 3, 4], [10, 20, -10, -20]], worker);
 
-console.log(result2)
-
-
-
-// Задание 3
+// Задание 3 
 function worker2(arr) {
   let max = -Infinity;
   let min = Infinity;
@@ -59,13 +44,11 @@ function worker2(arr) {
       min = arr[i];
     }
   }
-  let difference = max - min
-  let modulus = Math.abs(difference);
-  return modulus
+  return modulus = Math.abs(max - min)
 }
 
 function makeWork(arrOfArr, func) {
-  let max = 0;
+  let max = -Infinity;
   for (let i = 0; i < arrOfArr.length; i++) {
     let funcResult = func(arrOfArr[i]);
     if (funcResult > max) {
@@ -74,8 +57,8 @@ function makeWork(arrOfArr, func) {
   }
   return max;
 }
-let result3 = makeWork([[-10, -20, -40], [10, 20, 30]], worker2);
+let resultWorker = makeWork([[1, 2, 3, 4], [10, 20, -10, -20]], worker);
+let resultWorker2 = makeWork([[-10, -20, -40], [10, 20, 30]], worker2);
 
-console.log(result3)
-
-
+console.log(resultWorker);
+console.log(resultWorker2);
