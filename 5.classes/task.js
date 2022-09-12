@@ -8,7 +8,7 @@ class PrintEditionItem {
   }
 
   fix() {
-    this.state = this.state * 1.5
+    this.state *= 1.5
   }
 
   set state(number) {
@@ -79,14 +79,14 @@ class Library {
       if (book[type] == value) {
         return book;
       }
-    });
-    return resultFind.length !== 0 ? resultFind : null;
+    }); // или метод find, но тогда вернется только один первый найденный элемент 
+    return resultFind.length !== 0 ? resultFind : null; //return resultFind || null
   }
 
   giveBookByName(bookName) {
     for (let i = 0; i < this.books.length; i++) {
       if (this.books[i].name == bookName) {
-        return this.books.pop(this.books[i]);
+        return this.books.splice(i, 1)[0];
       }
     }
     return null
@@ -119,7 +119,5 @@ console.log(library.findBookBy("name", "Властелин колец")); //null
 console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
 
 console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
-let bookResult =
-  library.giveBookByName("Машина времени");
-console.log(bookResult);
+library.giveBookByName("Машина времени");
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
