@@ -2,13 +2,13 @@ function parseCount(value) {
   let resultParse = Number.parseInt(value);
   if (isNaN(resultParse)) {
     throw new Error("Невалидное значение");
-  } return resultParse;
+  }
+  return resultParse;
 };
 
 function validateCount(value) {
   try {
-    let resultValidate = parseCount(value);
-    return resultValidate;
+    return parseCount(value);
   } catch (err) {
     return err;
   }
@@ -36,14 +36,13 @@ class Triangle {
   getArea() {
     let p = this.getPerimeter() / 2;
     let s = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
-    return s.toFixed(3);
+    return +s.toFixed(3);
   }
 }
 
 function getTriangle(a, b, c) {
   try {
-    let triangle = new Triangle(a, b, c);
-    return triangle;
+    return new Triangle(a, b, c);
   } catch {
     return {
       getPerimeter() {
