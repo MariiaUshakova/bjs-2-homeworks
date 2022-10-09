@@ -2,38 +2,28 @@ class AlarmClock {
   constructor() {
     this.alarmCollection = [];
     this.timerId = null;
-  }
+  };
 
   addClock(time, action, id) {
     if (id == null) {
       throw new Error("Невозможно идентифицировать будильник. Параметр id не передан");
-    }
+    };
 
-    let foundItems = this.alarmCollection.find(item => {
-      if (item.id === id) {
-        return item;
-      }
-    });
+    let foundItems = this.alarmCollection.find(item => item.id === id);
 
-    if (foundItems != undefined) {
+    if (foundItems) {//foundItems != undefined
       console.error("Будильник с таким id уже существует");
       return;
-    }
+    };
 
     this.alarmCollection.push({ id, time, action });
-
-  }
+  };
 
   removeClock(id) {
-    this.alarmCollection = this.alarmCollection.filter(function (item) {
-      return item.id !== id;
-    });
-    if (this.alarmCollection.includes(id) === true) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+    const addLength = this.alarmCollection.length;
+    this.alarmCollection = this.alarmCollection.filter(item => item.id !== id);
+    return addLength !== this.alarmCollection;
+  };
 
   getCurrentFormattedTime() {
     const currentDate = new Date();
@@ -45,11 +35,10 @@ class AlarmClock {
   checkClock(alarm) {
     if (this.getCurrentFormattedTime() == alarm.time) {
       alarm.action();
-    }
-  }
+    };
+  };
 
   start() {
-
     const checkAllClocks = () => {
       this.alarmCollection.forEach(item => {
         this.checkClock(item);
@@ -58,30 +47,28 @@ class AlarmClock {
 
     if (this.timerId == null) {
       this.timerId = setInterval(checkAllClocks, 1000);
-    }
-
-  }
+    };
+  };
 
   stop() {
     if (this.timerId !== null) {
       clearInterval(this.timerId);
       this.timerId = null;
-    }
-  }
-
+    };
+  };
 
   printAlarms() {
     this.alarmCollection.forEach(item => {
       console.log(item.id + item.time);
     });
-  }
+  };
 
   clearAlarms() {
     this.stop();
-    this.alarmCollection.length = 0;
-  }
+    this.alarmCollection.length = [];
+  };
+};
 
-}
 
 function testCase() {
 
